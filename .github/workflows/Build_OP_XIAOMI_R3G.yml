@@ -28,7 +28,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Show hardware info
       run: |
@@ -79,11 +79,7 @@ jobs:
 
     - name: Configuration Customization
       run: |
-        if [[ ! -f "${CONFIG_FILE}" ]]; then
-          echo "❌ Error: Config file ${CONFIG_FILE} not found!"
-          exit 1
-        fi
-        [[ -d "files" ]] && mv -f files openwrt/files
+       
         cp -fv "${CONFIG_FILE}" openwrt/.config
         cd openwrt && make defconfig
         
